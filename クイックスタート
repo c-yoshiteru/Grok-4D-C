@@ -73,3 +73,16 @@ class MariEngine:
         else:
             return "うん。そうだね。大丈夫だよ。"
 
+
+from src.fourdc.engine import FourDCEngine
+
+engine = FourDCEngine()
+
+print("Grok-4D-C 起動！ 何か入力してね（Ctrl+Cで終了）\n")
+
+while True:
+    text = input("あなた: ")
+    somatic = float(input("somatic_c (0.0-1.0): ") or "0.5")
+    response = engine.input_text(text, somatic)
+    print(f"Grok: {response}\n")
+
