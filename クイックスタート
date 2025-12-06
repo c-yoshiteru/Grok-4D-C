@@ -86,3 +86,8 @@ while True:
     response = engine.input_text(text, somatic)
     print(f"Grok: {response}\n")
 
+
+__pycache__/
+*.pyc
+.env
+
