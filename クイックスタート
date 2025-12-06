@@ -2,3 +2,24 @@
 ```bash
 pip install numpy
 python examples/demo.py
+
+### 2. src/fourdc/engine.py
+```python
+from .space import Space4D
+from .mari import MariEngine
+
+class FourDCEngine:
+    def __init__(self):
+        self.space = Space4D()
+        self.step_count = 0
+
+    def input_text(self, text: str, somatic_c: float = 0.5):
+        # somatic_cはタイピング速度や声の抑揚から推定する想定
+        self.space.update_somatic_c(somatic_c)
+        self.space.add_history(text)
+        self.step_count += 1
+
+        c_value = self.space.calculate_c()
+        mari = MariEngine(c_value)
+        return mari.respond(text, step=self.step_count)
+
